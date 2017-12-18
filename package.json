@@ -1,0 +1,22 @@
+{
+  "name": "btree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -C --require babel-core/register"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}
