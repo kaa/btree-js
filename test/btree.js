@@ -39,6 +39,18 @@ describe("btree", function () {
     btree.insert(1, 42);
     assert.equal(42, btree.find(1));
   })
+
+  it("insert duplicate keys", function() {
+    const btree = new BTree();
+    btree.insert(1,"a");
+    btree.insert(1,"b")
+    btree.insert(1,"c")
+    btree.insert(1,"d")
+    btree.insert(1,"e")
+    btree.insert(1,"f")
+    assert.equal("c", btree.find(1));
+  })
+
   it("degree inserted items can be found", function () {
     const btree = new BTree();
     btree.insert(1, 42);
