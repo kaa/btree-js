@@ -64,6 +64,20 @@ describe("btree", function () {
     })
   });
 
+  describe("traversal", function(){
+    var btree = new BTree();
+    btree.root = Node.make(3,[3],["c"]);
+    btree.root.isLeaf = false;
+    btree.root.children[0] = Node.make(3,[1,2],["a","b"]);
+    btree.root.children[1] = Node.make(3,[4,5],["d","e"]);
+    it("can be traversed fully", function(){
+      assert.deepEqual(["a","b","c","d","e"], btree.traverse(1));
+    });
+    it("can be traversed partially", function(){
+      assert.deepEqual(["c","d"], btree.traverse(3,2));
+    });
+  });
+
   describe("_splitRoot", function () {
     //   [123]
     //   [abc]

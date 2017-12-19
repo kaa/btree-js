@@ -15,6 +15,21 @@ class BTree {
     return this._find(key, node.children[i]);
   }
 
+  traverse(key, count) {
+    var buffer = [];
+    this._traverse(key, count, this.root, buffer);
+    return buffer;
+  }
+  _traverse(key, count, node, buffer) {
+    let i = 0;
+    for(; i<node.size && key > node.keys[i]; i++);
+    for(; i<node.size && buffer.length != count; i++) {
+      if(!node.isLeaf) this._traverse(key, count, node.children[i], buffer);
+      buffer.push(node.data[i]);
+    }
+    if(!node.isLeaf) this._traverse(key, count, node.children[i], buffer);
+  }
+
   insert(key, value) {
     if(this.root.size==this.root.keys.length) {
       this._splitRoot();
