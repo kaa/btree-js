@@ -133,27 +133,6 @@ class Node {
     this.children = new Array(degree+1);
   }
 }
-Node.make = function(degree, keys, data) {
-  const node = new Node(degree);
-  node.size = keys.length;
-  node.keys = keys.concat(new Array(degree)).slice(0,degree);
-  if(data instanceof Array) {
-    assert.equal(keys.length, data.length);
-    node.data = data.concat(new Array(degree)).slice(0,degree);
-  }
-  return node;
-}
-Node.prototype.toJson = function() {
-  return {
-    isleaf: this.isLeaf,
-    size: this.size,
-    data: this.data.slice(0,this.size).join(","),
-    keys: this.keys.slice(0,this.size).join(","),
-    children: this.children 
-      ? this.children.slice(0,this.size+1).map(t => t ? t.toJson() : null) 
-      : null
-  }
-}
 
 export {
   BTree,
