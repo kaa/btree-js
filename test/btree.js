@@ -25,15 +25,18 @@ Node.prototype.toJson = function() {
 }
 
 describe("btree", function () {
+    
   it("returns null when tree is empty", function () {
     const btree = new BTree();
     assert.equal(null, btree.find(1, 42));
   })
+  
   it("null when item is not found", function () {
     const btree = new BTree();
     btree.insert(1, 42);
     assert.equal(null, btree.find(2));
   })
+
   it("inserted item can be found", function () {
     const btree = new BTree();
     btree.insert(1, 42);
@@ -60,17 +63,8 @@ describe("btree", function () {
     assert.equal(43, btree.find(2));
     assert.equal(44, btree.find(3));
   })
+
   it("insertion with root split can find item", function () {
-    /*
-    [1]
-
-    [13]
-
-    [134]
-
-      [3]
-    [12][4]
-    */
     const btree = new BTree();
     btree.insert(1, 42);
     btree.insert(3, 44);
@@ -78,14 +72,7 @@ describe("btree", function () {
     btree.insert(2, 43);
     assert.equal(43, btree.find(2));
   });
-  /*
-             [24]
-        [12]       [36]
-    [3 5 11] [15] [26 31][42 44 49]
 
-         [12 24 36]
-    [3 5][15][26 31][42 44 49]
-  */
   it("insertion of 500 items find all", function () {
     const btree = new BTree();
     var keys = Array.from({ length: 500 }, (value, key) => key);
@@ -115,8 +102,6 @@ describe("btree", function () {
   describe("_splitRoot", function () {
     //   [123]
     //   [abc]
-    //
-    //     V
     //
     //    [2]
     //    [b]
@@ -158,8 +143,6 @@ describe("btree", function () {
     //    /   |    \
     // [1]   [345] [7]
     // [a]   [cde] |g]
-    //
-    //       V
     //
     //     [246]
     //     [bdf]__
@@ -242,33 +225,6 @@ describe("btree", function () {
     })
   })
 });
-
-/*
-
-  [123]
-
-   [2]
-  [1][3]
-
-   [2]
-  [1][345]
-
-    [24]
-  [1][3][5]
-
-    [24]
-  [1][3][567]
-
-     [246]
-  [1][3][5][7]
-
-     [246]
-  [1][3][5][789]
-
-      [246]
-  [1][3][5][789]
-  
-*/
 
 function shuffle(array, rnd) {
   let counter = array.length;
