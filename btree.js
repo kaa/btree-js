@@ -1,8 +1,8 @@
 import * as assert from "assert";
 
 class BTree {
-  constructor() {
-    this.root = new Node();
+  constructor(degree) {
+    this.root = new Node(degree);
   }
   find(key) {
     return this._find(key, this.root);
@@ -42,7 +42,7 @@ class BTree {
     left.size = Math.floor(left.size/2);
 
     // copy left of old root to right
-    let right = new Node();
+    let right = new Node(left.keys.length);
     right.isLeaf = left.isLeaf;
     right.size = left.keys.length-left.size-1;
     let i = 0;
@@ -54,7 +54,7 @@ class BTree {
     right.children[i] = left.children[i+left.size+1];
 
     // make new root
-    this.root = new Node();
+    this.root = new Node(left.keys.length);
     this.root.isLeaf = false;
     this.root.size = 1;
     this.root.keys[0] = left.keys[left.size];
@@ -91,7 +91,7 @@ class BTree {
     left.size = Math.floor(left.size/2);
 
     // copy left to right
-    let right = new Node();
+    let right = new Node(left.keys.length);
     right.isLeaf = left.isLeaf;
     right.size = left.keys.length-left.size-1;
     for(i=0; i<right.size; i++) {
