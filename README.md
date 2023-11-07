@@ -3,6 +3,9 @@ A limited feature implementation of a B-tree index in Javascript. Currently only
 
 This is the precursor to implementing the same thing in [Solidity](https://solidity.readthedocs.io/en/develop/index.html) for use in ranking of posts in my [Ethereum Reddit clone](https://github.com/kaa/eth-talk).
 
+> [!NOTE]
+> This project is no longer maintained
+
 ## Usage
 ```javascript
 // Initialize index
